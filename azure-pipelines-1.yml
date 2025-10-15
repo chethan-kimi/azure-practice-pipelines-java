@@ -12,7 +12,7 @@ stages:
 - stage: build
   displayName: 'Build Stage'
   jobs:
-  - job: BuildJob
+  - job:
     displayName: 'Build Job'
     steps:
     - script: |

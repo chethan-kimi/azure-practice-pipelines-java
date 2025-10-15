@@ -12,7 +12,7 @@ stages:
 - stage: build
   displayName: 'Build Stage'
   jobs:
-  - job:
+  - job: 
     displayName: 'Build Job'
     steps:
     - script: |
@@ -21,3 +21,14 @@ stages:
     - script: 
         echo "Running Unit Tests" 
       displayName: 'Run Unit Tests'  
+- stage: test      
+  displayName: 'Test Stage'
+  dependsOn: Build
+  isSkippable: false
+  jobs:
+  - job:
+    displayName: 'Test Job'
+    steps:
+    - script: |
+        echo "Running unit tests"
+      displayName: 'Running Unit Tests'

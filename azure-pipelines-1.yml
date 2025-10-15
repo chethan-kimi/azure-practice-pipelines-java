@@ -48,7 +48,7 @@ stages:
 
   - job: DeployStagingJobWithValidation
     pool: server
-    timeoutInMinutes: 10
+    timeoutInMinutes: 2
     displayName: 'Deploy to Staging Job'      
     steps:
     - task: ManualValidation@1
@@ -56,4 +56,4 @@ stages:
       inputs:
         notifyUsers: 'chethanp4888@outlook.com'
         instructions: 'Please validate the stage configuration and resume'
-        onTimeout: 'resume'
+        onTimeout: 'reject'

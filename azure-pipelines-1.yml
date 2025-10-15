@@ -20,7 +20,8 @@ stages:
       displayName: 'Restore dependencies'
     - script: 
         echo "Running Unit Tests" 
-      displayName: 'Run Unit Tests'  
+      displayName: 'Run Unit Tests'
+
 - stage: test      
   displayName: 'Test Stage'
   dependsOn: Build
@@ -32,3 +33,27 @@ stages:
     - script: |
         echo "Running unit tests"
       displayName: 'Running Unit Tests'
+
+- stage: DeployToStaging
+  displayName: 'Deploy to Staging'  
+  dependsOn: test
+  jobs:
+  - job:
+    displayName: 'DeployStagingJob'
+# pool: azure-test
+    steps:
+    - script: |
+        echo "Build staging job"
+      displayName: 'Build and Deploy to Staging'
+
+  - job: DeployStagingJobWithValidation
+    pool: server
+    timeoutInMinutes: 10
+    displayName: 'Deploy to Staging Job'      
+    steps:
+    - task: ManualValidation@1
+      timeoutInMinutes: 1
+      inputs:
+        notifyUsers: 'chethanp4888@outlook.com'
+        instructions: 'Please validate the stage configuration and resume'
+        onTimeout: 'resume'

@@ -56,4 +56,4 @@ stages:
       inputs:
         notifyUsers: 'chethanp4888@outlook.com'
         instructions: 'Please validate the stage configuration and resume'
-        onTimeout: 'reject'
+        onTimeout: 'resume'

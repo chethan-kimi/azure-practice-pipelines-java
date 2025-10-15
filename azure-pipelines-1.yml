@@ -17,4 +17,7 @@ stages:
     steps:
     - script: |
         echo "Restoring project dependencies..."
-      displayName: 'Restore dependencies'  
+      displayName: 'Restore dependencies'
+    - script: 
+        echo "Running Unit Tests" 
+      displayName: 'Run Unit Tests'  
